@@ -1,78 +1,62 @@
 import React from "react";
 
 const InputsDraw = ({
-  inps,
-  valueSetersAndGeters,
+  state,
+  setState,
 }: {
-  inps: string[];
-  valueSetersAndGeters: any;
+  state: any;
+  setState: any;
 }): JSX.Element => {
-  const DrawedInps: JSX.Element[] = inps.map((inp: string, i: number) => {
-    const label: JSX.Element = <label>{inp}</label>;
-
-    let input: JSX.Element;
-    switch (inp) {
-      case "Type:":
-        input = (
-          <select
-            id="type"
-            value={valueSetersAndGeters.type}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-              valueSetersAndGeters.setType(e.target.value);
-            }}
-          >
-            <option value="invoice">Invoice</option>
-            <option value="payment">Payment</option>
-          </select>
-        );
-        break;
-      case "To / From:":
-        input = (
-          <input
-            type="text"
-            id="tofrom"
-            value={valueSetersAndGeters.tofrom}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              valueSetersAndGeters.setTofrom(e.target.value);
-            }}
-          />
-        );
-        break;
-      case "Details:":
-        input = (
-          <input
-            type="text"
-            id="details"
-            value={valueSetersAndGeters.details}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              valueSetersAndGeters.setDetails(e.target.value);
-            }}
-          />
-        );
-        break;
-      case "Amount (£):":
-        input = (
-          <input
-            type="number"
-            id="amount"
-            value={valueSetersAndGeters.amount}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              valueSetersAndGeters.setAmount(e.target.valueAsNumber);
-            }}
-          />
-        );
-        break;
-    }
-
-    const ret: JSX.Element = (
-      <div className="field" key={i}>
-        {label}
-        {input}
+  const DrawedInps = (
+    <>
+      <div className="field">
+        <label>Type:</label>
+        <select
+          id="type"
+          value={state.type}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setState({ ...state, type: e.target.value });
+          }}
+        >
+          <option value="invoice">Invoice</option>
+          <option value="payment">Payment</option>
+        </select>
       </div>
-    );
-    return ret;
-  });
-
+      <div className="field">
+        <label>To / From:</label>
+        <input
+          type="text"
+          id="tofrom"
+          value={state.tofrom}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setState({ ...state, tofrom: e.target.value });
+          }}
+        />
+      </div>
+      <div className="field">
+        <label>Details:</label>
+        <input
+          type="text"
+          id="details"
+          value={state.details}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setState({ ...state, details: e.target.value });
+          }}
+        />
+      </div>
+      <div className="field">
+        <label>Amount (£)</label>
+        <input
+          type="number"
+          id="amount"
+          value={state.amount}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setState({ ...state, amount: e.target.valueAsNumber });
+          }}
+        />
+      </div>
+    </>
+  );
   return <>{DrawedInps}</>;
 };
 
