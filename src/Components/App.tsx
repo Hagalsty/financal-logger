@@ -8,7 +8,7 @@ export const App = (): JSX.Element => {
   const Example = new Invoice(
     ` (To / From -> "Hayk") `,
     ` (Details -> "web developmnet") `,
-    ` (Amount -> 200) ` as unknown as number
+    ` (Amount -> 200) `
   );
 
   const [templates, setTemplates]: [

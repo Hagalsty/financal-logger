@@ -17,7 +17,7 @@ const Form = ({
     type: "invoice",
     tofrom: "",
     details: "",
-    amount: 0,
+    amount: "0",
   });
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,11 +25,11 @@ const Form = ({
 
     if (!state.tofrom || !state.details) {
       setStatus("Please fill form");
-    } else if (state.amount <= 0) {
+    } else if (Number(state.amount) <= 0) {
       setStatus("Amount must be set correctly");
     } else {
       setStatus("");
-      const values: [string, string, number] = [
+      const values: [string, string, string] = [
         state.tofrom,
         state.details,
         state.amount,
@@ -45,7 +45,7 @@ const Form = ({
         ...state,
         tofrom: "",
         details: "",
-        amount: 0,
+        amount: "0",
       });
     }
   };
